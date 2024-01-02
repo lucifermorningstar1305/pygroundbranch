@@ -1,3 +1,8 @@
+"""
+Citation: https://stackoverflow.com/questions/45973453/using-mouse-and-keyboard-listeners-together-in-python
+"""
+
+
 from typing import Tuple, List, Dict, Any 
 from pynput import keyboard, mouse
 
@@ -51,7 +56,5 @@ if __name__ == "__main__":
         
         klistener.join()
         mlistener.join()
-
-        print(klistener, mlistener)
 
     print(ACTIONS)
