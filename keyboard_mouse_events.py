@@ -11,6 +11,10 @@ from pynput import keyboard, mouse
 
 from collections import defaultdict
 
+ACTIONS = defaultdict(lambda: list())
+KLISTENER = None
+MLISTINER = None
+
 def on_move(x, y) -> Tuple:
     ACTIONS["mouse_movement"].append((x, y))
 
@@ -20,10 +24,9 @@ def on_press(key) -> str:
 
 
 def on_release(key):
-
     if key == keyboard.Key.f10:
-        mlistener.stop()
-        klistener.stop()
+        KLISTENER.stop()
+        MLISTINER.stop()
         return False
     
 
@@ -52,15 +55,21 @@ def on_scroll(x, y, dx, dy) -> str:
     except Exception as exc:
         pass
 
-if __name__ == "__main__":
-    ACTIONS = defaultdict(lambda: list())
-
+def main():
+    global KLISTENER
+    global MLISTINER
+    
     pyk.wait("0")
     print("START!!")
 
     with keyboard.Listener(on_press=on_press, on_release=on_release) as klistener, mouse.Listener(on_move=on_move, on_click=on_click, on_scroll=on_scroll) as mlistener:
         
+        KLISTENER = klistener
+        MLISTINER = mlistener
+
         klistener.join()
         mlistener.join()
 
     print(ACTIONS)
+
+    return ACTIONS["keyboard"][-1]
