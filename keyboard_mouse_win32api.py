@@ -8,7 +8,8 @@ def get_mouse_pos():
 def get_mouse_click():
     special_keys = {
         0x01: "leftClick",
-        0x02: "rightClick"
+        0x02: "rightClick",
+        0x04: "middleClick"
     }
 
     for i in range(1, 256):
