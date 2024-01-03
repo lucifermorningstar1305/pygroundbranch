@@ -1,3 +1,7 @@
+"""
+Citation: https://www.reddit.com/r/learnpython/comments/6vapuy/how_do_i_detect_key_presses_and_mouse_clicks_in/
+"""
+
 import win32api as wapi
 import time
 
